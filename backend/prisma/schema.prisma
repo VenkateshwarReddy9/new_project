@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
@@ -117,7 +118,7 @@ model Activity {
   groupId   String
   userId    String
   type      String
-  data      String
+  data      String   @db.Text
   createdAt DateTime @default(now())
 
   group Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
