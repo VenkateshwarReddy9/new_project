@@ -13,7 +13,7 @@ export function useSocket(groupId?: string) {
 
     const socket = io('/', {
       auth: { token: accessToken },
-      transports: ['websocket', 'polling'],
+      transports: ['polling', 'websocket'],
     });
 
     socketRef.current = socket;
